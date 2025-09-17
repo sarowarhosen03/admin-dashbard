@@ -1,7 +1,7 @@
 import { userData } from "@/data/config";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import GoogleProvider from "next-auth/providers/google";
 export const {
   handlers: { GET, POST },
   auth,
@@ -14,6 +14,7 @@ export const {
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
       },
+
       async authorize(credentials) {
         if (
           credentials.username === userData.email &&
@@ -23,6 +24,11 @@ export const {
         }
         return null;
       },
+    }),
+
+    GoogleProvider({
+      clientId: process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
   ],
 });

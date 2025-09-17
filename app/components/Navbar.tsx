@@ -1,6 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { signOut, useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
+import LoginModal from './LoginModal';
 import { useTheme } from './ThemeProvider';
 
 interface NavbarProps {
@@ -10,7 +13,14 @@ interface NavbarProps {
 export default function Navbar({ onMenuToggle }: NavbarProps) {
     const { theme, toggleTheme, mounted } = useTheme();
     const isDark = theme === 'dark';
+    const { status, data } = useSession();
+    const [showLoginModal, setShowLoginModal] = useState(false);
 
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            setShowLoginModal(true);
+        }
+    }, [status]);
     return (
         <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
             <div className="flex items-center justify-between">
@@ -75,14 +85,41 @@ export default function Navbar({ onMenuToggle }: NavbarProps) {
                     </motion.button>
 
                     {/* User Profile */}
-                    <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
-                            A
+                    {status === "authenticated" ? (
+                        <div className="flex items-center space-x-3">
+                            <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                {data?.user?.name?.charAt(0) || "A"}
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                                    {data?.user?.name || "Admin"}
+                                </span>
+                                <button
+                                    onClick={() => signOut()}
+                                    className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+                                >
+                                    Sign out
+                                </button>
+                            </div>
                         </div>
-                        <span className="text-sm font-medium text-gray-700 dark:text-gray-200">Admin</span>
-                    </div>
+                    ) : (
+                        <motion.button
+                            onClick={() => setShowLoginModal(true)}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
+                        >
+                            Sign In
+                        </motion.button>
+                    )}
                 </div>
             </div>
+
+            {/* Login Modal */}
+            <LoginModal
+                isOpen={showLoginModal}
+                onClose={() => setShowLoginModal(false)}
+            />
         </nav>
     );
 }

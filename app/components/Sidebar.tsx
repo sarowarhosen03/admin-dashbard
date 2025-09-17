@@ -41,25 +41,23 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-900 shadow-xl dark:shadow-black/20 z-50 md:relative md:translate-x-0 md:shadow-none lg:relative lg:translate-x-0 lg:shadow-none ${
-          mdUp
-            ? "translate-x-0"
-            : isOpen
+        className={`fixed  top-0 left-0 h-full w-64 bg-white dark:bg-gray-900 shadow-xl dark:shadow-black/20 z-50 md:relative md:translate-x-0 md:shadow-none lg:relative lg:translate-x-0 lg:shadow-none ${mdUp
+          ? "translate-x-0"
+          : isOpen
             ? "translate-x-0"
             : "-translate-x-full"
-        }`}
+          }`}
       >
-        <div className="flex flex-col h-full">
+        <div className="flex  flex-col h-full">
           <nav className="flex-1 p-4">
             <ul className="space-y-2">
               {menuItems.map((item) => (
                 <li key={item.id}>
                   <div
-                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors cursor-pointer ${
-                      pathname === item.href
-                        ? "bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border-r-2 border-blue-600 dark:border-blue-500"
-                        : "text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800"
-                    }`}
+                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors cursor-pointer ${pathname === item.href
+                      ? "bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border-r-2 border-blue-600 dark:border-blue-500"
+                      : "text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800"
+                      }`}
                   >
                     <Link
                       href={item.href}

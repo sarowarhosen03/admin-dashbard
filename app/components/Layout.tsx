@@ -18,12 +18,12 @@ export default function Layout({ children }: LayoutProps) {
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
-            <Navbar />
+            <Navbar onMenuToggle={toggleSidebar} />
 
             <div className="flex">
                 <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
 
-                <div className="flex-1 lg:ml-64">
+                <div className="flex-1 md:ml-64">
                     <motion.main
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}

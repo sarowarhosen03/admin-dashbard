@@ -3,19 +3,48 @@
 import { motion } from 'framer-motion';
 import { useTheme } from './ThemeProvider';
 
-export default function Navbar() {
+interface NavbarProps {
+    onMenuToggle: () => void;
+}
+
+export default function Navbar({ onMenuToggle }: NavbarProps) {
     const { theme, toggleTheme, mounted } = useTheme();
     const isDark = theme === 'dark';
 
     return (
         <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
             <div className="flex items-center justify-between">
-                {/* Logo */}
-                <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                        A
+                {/* Logo and Mobile Menu */}
+                <div className="flex items-center space-x-4">
+                    {/* Mobile Menu Button */}
+                    <motion.button
+                        onClick={onMenuToggle}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                        aria-label="Toggle menu"
+                    >
+                        <svg
+                            className="w-6 h-6 text-gray-600 dark:text-gray-300"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                        </svg>
+                    </motion.button>
+
+                    <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                            A
+                        </div>
+                        <h1 className="text-xl font-bold text-gray-900 dark:text-white">Admin Dashboard</h1>
                     </div>
-                    <h1 className="text-xl font-bold text-gray-900 dark:text-white">Admin Dashboard</h1>
                 </div>
 
                 {/* Right side - Theme toggle and user */}

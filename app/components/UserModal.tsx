@@ -137,7 +137,7 @@ export default function UserModal({ user, isOpen, onClose }: UserModalProps) {
                                     </h3>
                                     <div className="space-y-2">
                                         <p className="text-lg font-medium text-gray-900 dark:text-white">{user.company.name}</p>
-                                        <p className="text-gray-700 dark:text-gray-300 italic">"{user.company.catchPhrase}"</p>
+                                        <p className="text-gray-700 dark:text-gray-300 italic">&ldquo;{user.company.catchPhrase}&rdquo;</p>
                                         <p className="text-sm text-gray-500 dark:text-gray-400">{user.company.bs}</p>
                                     </div>
                                 </motion.div>

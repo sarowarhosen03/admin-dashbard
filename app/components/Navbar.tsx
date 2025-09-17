@@ -87,8 +87,11 @@ export default function Navbar({ onMenuToggle }: NavbarProps) {
                     {/* User Profile */}
                     {status === "authenticated" ? (
                         <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
-                                {data?.user?.name?.charAt(0) || "A"}
+                            <div className="relative">
+                                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg ring-2 ring-white dark:ring-gray-800">
+                                    {data?.user?.name?.charAt(0) || "A"}
+                                </div>
+                                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900"></div>
                             </div>
                             <div className="flex flex-col">
                                 <span className="text-sm font-medium text-gray-700 dark:text-gray-200">

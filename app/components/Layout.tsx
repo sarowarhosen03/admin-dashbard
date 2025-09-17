@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useState } from 'react';
+import FadeIn from './FadeIn';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 
@@ -23,15 +23,10 @@ export default function Layout({ children }: LayoutProps) {
             <div className="flex">
                 <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
 
-                <div className="flex-1 md:ml-64">
-                    <motion.main
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="p-6"
-                    >
+                <div className="w-full flex-1 mx-7 items-center justify-center">
+                    <FadeIn className="mx-6">
                         {children}
-                    </motion.main>
+                    </FadeIn>
                 </div>
             </div>
         </div>

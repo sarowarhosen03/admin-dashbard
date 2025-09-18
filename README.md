@@ -2,6 +2,37 @@
 
 A modern, responsive admin dashboard built with Next.js 15, TypeScript, and Tailwind CSS. This project features a complete authentication system, real-time data visualization, and a beautiful user interface with dark mode support.
 
+## 🔴 Live Demo
+
+Visit the deployed app here: [admin-dashbard-mauve.vercel.app](https://admin-dashbard-mauve.vercel.app/)
+
+## 🖼️ Screenshots
+
+> Note: All screenshots are stored under `public/assets/`.
+
+
+
+### Authentication
+
+![Authentication](public/assets/auth.png)
+
+### Dashboard
+
+![Dashboard](public/assets/dash.png)
+
+### Users
+
+![Users](public/assets/users.png)
+
+
+### Post Details
+
+![Post Details](public/assets/post-details.png)
+
+### All Posts Overview
+
+![All Posts](public/assets/all-posts.png)
+
 ## 🚀 Features
 
 ### 🔐 Authentication System
